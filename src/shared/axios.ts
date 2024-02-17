@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
+import config from '../config';
 
 const HttpService = (baseUrl: string): AxiosInstance => {
   const instance = axios.create({
@@ -10,12 +11,18 @@ const HttpService = (baseUrl: string): AxiosInstance => {
   });
 
   instance.interceptors.request.use(
-    (config) => config,
-    (error) => error
+    (config) => {
+      return config;
+    },
+    (error) => {
+      return error;
+    }
   );
 
   instance.interceptors.response.use(
-    (response) => response.data,
+    (response) => {
+      return response.data;
+    },
     (error) => {
       return Promise.reject(error);
     }
@@ -23,3 +30,8 @@ const HttpService = (baseUrl: string): AxiosInstance => {
 
   return instance;
 };
+
+const AuthService = HttpService(config.authServiceUrl);
+const CoreService = HttpService(config.coreServiceUrl);
+
+export { HttpService, AuthService, CoreService };

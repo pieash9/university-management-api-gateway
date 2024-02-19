@@ -23,11 +23,15 @@ const getByIdFromDB = async (req: Request): Promise<IGenericResponse> => {
 };
 
 const insertIntoDB = async (req: Request): Promise<IGenericResponse> => {
-  const response: IGenericResponse = await CoreService.post(`/student-enrolled-courses`, req.body, {
-    headers: {
-      Authorization: req.headers.authorization
+  const response: IGenericResponse = await CoreService.post(
+    `/student-enrolled-courses`,
+    req.body,
+    {
+      headers: {
+        Authorization: req.headers.authorization
+      }
     }
-  });
+  );
   return response;
 };
 
@@ -47,11 +51,14 @@ const updateOneInDB = async (req: Request): Promise<IGenericResponse> => {
 
 const deleteByIdFromDB = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
-  const response: IGenericResponse = await CoreService.delete(`/student-enrolled-courses/${id}`, {
-    headers: {
-      Authorization: req.headers.authorization
+  const response: IGenericResponse = await CoreService.delete(
+    `/student-enrolled-courses/${id}`,
+    {
+      headers: {
+        Authorization: req.headers.authorization
+      }
     }
-  });
+  );
   return response;
 };
 

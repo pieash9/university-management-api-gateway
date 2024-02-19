@@ -1,4 +1,4 @@
 export const ExamType = {
-  MIDTERM: 'MIDTERM',
-  FINAL: 'FINAL'
+    MIDTERM: 'MIDTERM',
+    FINAL: 'FINAL'
 };

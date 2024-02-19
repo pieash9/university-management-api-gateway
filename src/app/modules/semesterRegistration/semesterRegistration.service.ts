@@ -3,7 +3,7 @@ import { IGenericResponse } from '../../../interfaces/common';
 import { CoreService } from '../../../shared/axios';
 
 const getAllFromDB = async (req: Request): Promise<IGenericResponse> => {
-  const response: IGenericResponse = await CoreService.get('/semester-registration', {
+  const response: IGenericResponse = await CoreService.get('/semester-registrations', {
     params: req.query,
     headers: {
       Authorization: req.headers.authorization
@@ -14,7 +14,7 @@ const getAllFromDB = async (req: Request): Promise<IGenericResponse> => {
 
 const getByIdFromDB = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
-  const response: IGenericResponse = await CoreService.get(`/semester-registration/${id}`, {
+  const response: IGenericResponse = await CoreService.get(`/semester-registrations/${id}`, {
     headers: {
       Authorization: req.headers.authorization
     }
@@ -23,18 +23,22 @@ const getByIdFromDB = async (req: Request): Promise<IGenericResponse> => {
 };
 
 const insertIntoDB = async (req: Request): Promise<IGenericResponse> => {
-  const response: IGenericResponse = await CoreService.post(`/semester-registration`, req.body, {
-    headers: {
-      Authorization: req.headers.authorization
+  const response: IGenericResponse = await CoreService.post(
+    `/semester-registrations`,
+    req.body,
+    {
+      headers: {
+        Authorization: req.headers.authorization
+      }
     }
-  });
+  );
   return response;
 };
 
 const updateOneInDB = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
   const response: IGenericResponse = await CoreService.patch(
-    `/semester-registration/${id}`,
+    `/semester-registrations/${id}`,
     req.body,
     {
       headers: {
@@ -47,7 +51,7 @@ const updateOneInDB = async (req: Request): Promise<IGenericResponse> => {
 
 const deleteByIdFromDB = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
-  const response: IGenericResponse = await CoreService.delete(`/semester-registration/${id}`, {
+  const response: IGenericResponse = await CoreService.delete(`/semester-registrations/${id}`, {
     headers: {
       Authorization: req.headers.authorization
     }
@@ -57,7 +61,7 @@ const deleteByIdFromDB = async (req: Request): Promise<IGenericResponse> => {
 
 const getMyRegistration = async (req: Request): Promise<IGenericResponse> => {
   const response: IGenericResponse = await CoreService.get(
-    `/semester-registration/get-my-registration`,
+    `/semester-registrations/get-my-registration`,
     {
       headers: {
         Authorization: req.headers.authorization
@@ -69,7 +73,7 @@ const getMyRegistration = async (req: Request): Promise<IGenericResponse> => {
 
 const startRegistration = async (req: Request): Promise<IGenericResponse> => {
   const response: IGenericResponse = await CoreService.post(
-    `/semester-registration/start-registration`,
+    `/semester-registrations/start-registration`,
     {},
     {
       headers: {
@@ -82,7 +86,7 @@ const startRegistration = async (req: Request): Promise<IGenericResponse> => {
 
 const mySemesterRegistrationCourses = async (req: Request): Promise<IGenericResponse> => {
   const response: IGenericResponse = await CoreService.get(
-    `/semester-registration/get-my-semsester-courses`,
+    `/semester-registrations/get-my-semsester-courses`,
     {
       headers: {
         Authorization: req.headers.authorization
@@ -94,7 +98,7 @@ const mySemesterRegistrationCourses = async (req: Request): Promise<IGenericResp
 
 const enrollIntoCourse = async (req: Request): Promise<IGenericResponse> => {
   const response: IGenericResponse = await CoreService.post(
-    `/semester-registration/enroll-into-course`,
+    `/semester-registrations/enroll-into-course`,
     req.body,
     {
       headers: {
@@ -107,7 +111,7 @@ const enrollIntoCourse = async (req: Request): Promise<IGenericResponse> => {
 
 const withDrawFromCourse = async (req: Request): Promise<IGenericResponse> => {
   const response: IGenericResponse = await CoreService.post(
-    `/semester-registration/withdraw-from-course`,
+    `/semester-registrations/withdraw-from-course`,
     req.body,
     {
       headers: {
@@ -120,7 +124,7 @@ const withDrawFromCourse = async (req: Request): Promise<IGenericResponse> => {
 
 const confirmRegistration = async (req: Request): Promise<IGenericResponse> => {
   const response: IGenericResponse = await CoreService.post(
-    `/semester-registration/confirm-my-registration`,
+    `/semester-registrations/confirm-my-registration`,
     req.body,
     {
       headers: {
@@ -134,7 +138,7 @@ const confirmRegistration = async (req: Request): Promise<IGenericResponse> => {
 const startNewSemester = async (req: Request): Promise<IGenericResponse> => {
   const { id } = req.params;
   const response: IGenericResponse = await CoreService.post(
-    `/semester-registration/${id}/start-new-semester`,
+    `/semester-registrations/${id}/start-new-semester`,
     req.body,
     {
       headers: {
